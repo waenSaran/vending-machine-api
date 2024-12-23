@@ -6,8 +6,8 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
+	"github.com/waenSaran/vending-machine-api/app/middleware"
 	_ "github.com/waenSaran/vending-machine-api/docs"
-	"github.com/waenSaran/vending-machine-api/middleware"
 	"github.com/waenSaran/vending-machine-api/routes"
 )
 

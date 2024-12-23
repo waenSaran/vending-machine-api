@@ -2,8 +2,8 @@ package controller
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/waenSaran/vending-machine-api/app/models"
 	_ "github.com/waenSaran/vending-machine-api/docs"
-	"github.com/waenSaran/vending-machine-api/models"
 )
 
 // GetProductList func gets all products.

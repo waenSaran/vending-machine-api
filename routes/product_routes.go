@@ -2,8 +2,8 @@ package routes
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/waenSaran/vending-machine-api/controller"
-	"github.com/waenSaran/vending-machine-api/middleware"
+	"github.com/waenSaran/vending-machine-api/app/controller"
+	"github.com/waenSaran/vending-machine-api/app/middleware"
 )
 
 func ProductRoutes(app *fiber.App) {
