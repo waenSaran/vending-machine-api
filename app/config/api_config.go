@@ -1,8 +1,8 @@
-package constant
+package config
 
 import "os"
 
-var Config = map[string]string{
+var ApiConfig = map[string]string{
 	"PORT":       os.Getenv("PORT"),
 	"SECRET_KEY": os.Getenv("SECRET_KEY"),
 }

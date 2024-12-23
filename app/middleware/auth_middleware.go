@@ -4,14 +4,14 @@ import (
 	jwtware "github.com/gofiber/contrib/jwt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/waenSaran/vending-machine-api/app/constant"
+	"github.com/waenSaran/vending-machine-api/app/config"
 	"github.com/waenSaran/vending-machine-api/app/models"
 )
 
 func AuthMiddleware(app *fiber.App) {
 	// JWT Middleware
 	app.Use(jwtware.New(jwtware.Config{
-		SigningKey: jwtware.SigningKey{Key: []byte(constant.Config["SECRET_KEY"])},
+		SigningKey: jwtware.SigningKey{Key: []byte(config.ApiConfig["SECRET_KEY"])},
 	}))
 
 	// Middleware to extract user data from the JWT token

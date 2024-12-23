@@ -1,16 +1,19 @@
 package models
 
-type Product struct {
-	ID       int    `json:"id"`
-	Name     string `json:"name"`
-	Category string `json:"category"`
-	Price    int    `json:"price"`
-	Quantity int    `json:"quantity"`
-	ImageURL string `json:"image_url"`
+import (
+	"gorm.io/gorm"
+)
+
+type BaseProducts struct {
+	Name          string `json:"name"`
+	SubCategoryId int    `json:"sub_category_id"`
+	Price         int    `json:"price"`
+	Amount        int    `json:"amount"`
+	ImageURL      string `json:"image_url"`
+	UpdatedBy     string `json:"updated_by"`
 }
 
-type AddProductResponse struct {
-	Status    string `json:"status"`
-	Data      string `json:"data"`
-	CreatedBy string `json:"created_by"`
+type Products struct {
+	gorm.Model
+	BaseProducts
 }

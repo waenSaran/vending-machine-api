@@ -7,6 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 	"github.com/waenSaran/vending-machine-api/app/middleware"
+	"github.com/waenSaran/vending-machine-api/db"
 	_ "github.com/waenSaran/vending-machine-api/docs"
 	"github.com/waenSaran/vending-machine-api/routes"
 )
@@ -33,6 +34,9 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+
+	// connect to database
+	db.InitDB()
 
 	// Swagger Route
 	routes.SwaggerRoutes(app)

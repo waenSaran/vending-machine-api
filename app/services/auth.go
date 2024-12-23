@@ -5,7 +5,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/waenSaran/vending-machine-api/app/constant"
+	"github.com/waenSaran/vending-machine-api/app/config"
 )
 
 // Dummy user for example
@@ -35,13 +35,13 @@ func Login(c *fiber.Ctx) error {
 		"email": dummyUser.Email,
 		"role":  "admin",
 		"name":  dummyUser.Name,
-		"exp":   time.Now().Add(time.Minute * 5).Unix(),
+		"exp":   time.Now().Add(time.Hour * 24).Unix(),
 	}
 
 	// Create token
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	secretKey := []byte(constant.Config["SECRET_KEY"])
+	secretKey := []byte(config.ApiConfig["SECRET_KEY"])
 
 	// Generate encoded token and send it as response.
 	t, err := token.SignedString(secretKey)
