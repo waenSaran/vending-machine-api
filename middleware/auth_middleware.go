@@ -5,6 +5,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/waenSaran/vending-machine-api/constant"
+	"github.com/waenSaran/vending-machine-api/models"
 )
 
 func AuthMiddleware(app *fiber.App) {
@@ -18,7 +19,7 @@ func AuthMiddleware(app *fiber.App) {
 }
 
 func ExtractUserFromJWT(c *fiber.Ctx) error {
-	user := &constant.UserData{}
+	user := &models.UserData{}
 
 	// Extract the token from the Fiber context (inserted by the JWT middleware)
 	token := c.Locals("user").(*jwt.Token)

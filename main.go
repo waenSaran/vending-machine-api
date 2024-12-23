@@ -6,10 +6,25 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
+	_ "github.com/waenSaran/vending-machine-api/docs"
 	"github.com/waenSaran/vending-machine-api/middleware"
 	"github.com/waenSaran/vending-machine-api/routes"
 )
 
+// @title Vending Machine System API
+// @version 1.0
+// @description This is a Vending Machine System API for BluePi assignment
+// @termsOfService http://swagger.io/terms/
+// @contact.name Saranya
+// @contact.email saranya.hiransatakun@gmail.com
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @host localhost:8080
+// @BasePath /api/v1
+// @schemes http
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 func main() {
 	app := fiber.New()
 
@@ -18,6 +33,9 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+
+	// Swagger Route
+	routes.SwaggerRoutes(app)
 
 	// Auth Routes
 	routes.AuthRoutes(app)
