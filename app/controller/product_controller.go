@@ -114,7 +114,7 @@ func DeleteProduct(c *fiber.Ctx) error {
 		})
 	}
 
-	if err := db.DB.Delete(&product).Error; err != nil {
+	if err := db.DB.Delete(&product, id).Error; err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": "Could not delete product: " + err.Error(),
 		})
