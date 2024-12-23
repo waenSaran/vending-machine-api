@@ -8,9 +8,10 @@ type BaseCategories struct {
 }
 
 type BaseSubCategories struct {
-	ID         int    `json:"id"`
-	CategoryID int    `json:"category_id"`
-	Name       string `json:"name"`
+	ID         int        `json:"id"`
+	CategoryID int        `json:"category_id"`
+	Category   Categories `json:"categories,omitempty" gorm:"foreignKey:CategoryID;references:ID"`
+	Name       string     `json:"name"`
 }
 
 type Categories struct {
@@ -21,4 +22,9 @@ type Categories struct {
 type SubCategories struct {
 	gorm.Model
 	BaseSubCategories
+}
+
+type CategoriesResponse struct {
+	Category    string `json:"category"`
+	SubCategory string `json:"sub_category"`
 }

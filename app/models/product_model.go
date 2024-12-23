@@ -17,3 +17,8 @@ type Products struct {
 	gorm.Model
 	BaseProducts
 }
+
+type ProductsResponse struct {
+	Products
+	CategoryId int `json:"category_id"`
+}

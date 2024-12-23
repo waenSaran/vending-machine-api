@@ -12,11 +12,11 @@ import (
 // @Tags Product
 // @Accept json
 // @Produce json
-// @Success 200 {array} models.Product
+// @Success 200 {array} models.ProductResponse
 // @Router /products [get]
 func GetProductList(c *fiber.Ctx) error {
-	var products []models.Products
-	db.DB.Model(&models.Products{}).Find(&products)
+	var products []models.ProductsResponse
+	db.DB.Table("products").Select("products.*", "categories.id as category_id").Joins("JOIN sub_categories ON sub_categories.id = products.sub_category_id").Joins("JOIN categories ON categories.id = sub_categories.category_id").Find(&products)
 	return c.JSON(products)
 }
 
@@ -25,12 +25,12 @@ func GetProductList(c *fiber.Ctx) error {
 // @Tags Product
 // @Accept json
 // @Produce json
-// @Success 200 {object} models.Product
+// @Success 200 {object} models.ProductResponse
 // @Router /product/{id} [get]
 func GetProductById(c *fiber.Ctx) error {
-	var product models.Products
+	var product models.ProductsResponse
 	id := c.Params("id")
-	db.DB.Model(&product).First(&product, id)
+	db.DB.Table("products").Select("products.*", "categories.id as category_id").Joins("JOIN sub_categories ON sub_categories.id = products.sub_category_id").Joins("JOIN categories ON categories.id = sub_categories.category_id").First(&product, id)
 
 	if product.ID == 0 {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
@@ -97,10 +97,10 @@ func UpdateProduct(c *fiber.Ctx) error {
 
 	if err := db.DB.Save(&product).Error; err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error": "Could not create product: " + err.Error(),
+			"error": "Could not update product: " + err.Error(),
 		})
 	}
-	return c.Status(fiber.StatusCreated).JSON(product)
+	return c.Status(fiber.StatusOK).JSON(product)
 }
 
 func DeleteProduct(c *fiber.Ctx) error {
