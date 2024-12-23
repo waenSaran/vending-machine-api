@@ -3,7 +3,14 @@
 ```
 nodemon --exec go run main.go --signal SIGTERM
 ```
-
+- docker stop all running container
+```
+docker stop $(docker ps -a -q)
+```
+- local build docker
+```
+docker build -t api .
+```
 - after build Dockerfile using the below command to start the container
 ```
 docker run -d -p 8080:8080 --env-file .env api
