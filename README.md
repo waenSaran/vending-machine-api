@@ -7,6 +7,10 @@ nodemon --exec go run main.go --signal SIGTERM
 ```
 docker stop $(docker ps -a -q)
 ```
+- Remove unused images to prevent conflicts:
+```
+docker image prune -f
+```
 - local build docker
 ```
 docker build -t api .
