@@ -16,7 +16,7 @@ import (
 // @Router /products [get]
 func GetProductList(c *fiber.Ctx) error {
 	var products []models.ProductsResponse
-	db.DB.Table("products").Select("products.*", "categories.id as category_id").Joins("JOIN sub_categories ON sub_categories.id = products.sub_category_id").Joins("JOIN categories ON categories.id = sub_categories.category_id").Find(&products)
+	db.DB.Table("products").Select("products.*", "categories.id as category_id").Joins("JOIN sub_categories ON sub_categories.id = products.sub_category_id").Joins("JOIN categories ON categories.id = sub_categories.category_id").Order("products.ID ASC").Find(&products)
 	return c.JSON(products)
 }
 
