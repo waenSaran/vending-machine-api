@@ -78,7 +78,6 @@ func AddProduct(c *fiber.Ctx) error {
 func UpdateProduct(c *fiber.Ctx) error {
 	id := c.Params("id")
 	product := new(models.Products)
-	user := c.Locals("user").(*models.UserData)
 	db.DB.First(&product, id)
 
 	if product.ID == 0 {
@@ -92,8 +91,6 @@ func UpdateProduct(c *fiber.Ctx) error {
 			"error": "Could not parse product data: " + err.Error(),
 		})
 	}
-
-	product.UpdatedBy = user.Email
 
 	if err := db.DB.Save(&product).Error; err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
