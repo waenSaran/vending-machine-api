@@ -9,4 +9,5 @@ func MoneyRoutes(app *fiber.App) {
 	route := app.Group("/api/v1")
 
 	route.Get("/money", controller.GetMoneyList)
+	route.Put("/money", controller.UpdateMoneyInStock)
 }
