@@ -15,7 +15,7 @@ docker build -t api .
 ```
 docker run -d -p 8080:8080 --env-file .env api
 // or
-docker compose up
+docker compose up --build
 ```
 
 - This project will push image to Google Artifact Registry and deploy on CloudRun (ref: https://docs.mikelopster.dev/c/goapi-essential/chapter-9/cloudrun)
