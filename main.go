@@ -48,6 +48,8 @@ func main() {
 	middleware.LoggingMiddleware(app)
 	middleware.CorsMiddleware(app)
 
+	routes.CategoryRoutes(app)
+	routes.MoneyRoutes(app)
 	routes.ProductRoutes(app)
 	routes.RestrictedProductRoutes(app)
 
