@@ -3,6 +3,7 @@ package controller
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/waenSaran/vending-machine-api/app/models"
+	"github.com/waenSaran/vending-machine-api/app/services"
 	"github.com/waenSaran/vending-machine-api/db"
 	_ "github.com/waenSaran/vending-machine-api/docs"
 )
@@ -74,7 +75,7 @@ func AddProduct(c *fiber.Ctx) error {
 // @Accept json
 // @Produce json
 // @Success 200 {object} models.Products
-// @Router /product [post]
+// @Router /product [put]
 func UpdateProduct(c *fiber.Ctx) error {
 	id := c.Params("id")
 	product := new(models.Products)
@@ -98,6 +99,10 @@ func UpdateProduct(c *fiber.Ctx) error {
 		})
 	}
 	return c.Status(fiber.StatusOK).JSON(product)
+}
+
+func UpdateProductAmount(c *fiber.Ctx) error {
+	return services.UpdateProductAmount(c)
 }
 
 func DeleteProduct(c *fiber.Ctx) error {
