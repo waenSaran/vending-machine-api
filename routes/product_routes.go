@@ -11,7 +11,7 @@ func ProductRoutes(app *fiber.App) {
 
 	route.Get("/products", controller.GetProductList)
 	route.Get("/product/:id", controller.GetProductById)
-	route.Put("/product/:id", controller.UpdateProduct)
+	route.Put("/product/:id/amount", controller.UpdateProductAmount)
 }
 
 func RestrictedProductRoutes(app *fiber.App) {
@@ -20,5 +20,6 @@ func RestrictedProductRoutes(app *fiber.App) {
 	middleware.AuthMiddleware(app)
 
 	route.Post("/product", controller.AddProduct)
+	route.Put("/product/:id", controller.UpdateProduct)
 	route.Delete("/product/:id", controller.DeleteProduct)
 }
